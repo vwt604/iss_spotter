@@ -11,3 +11,14 @@
 
 //   console.log('It worked! Returned IP:' , ip);
 // });
+
+const { fetchCoordsByIP } = require('./iss');
+
+fetchCoordsByIp((error, coord) => {
+  if (error) {
+    console.log("It didn't work!" , error);
+    return;
+  }
+
+  console.log('It worked! Returned IP:' , coord;
+});
