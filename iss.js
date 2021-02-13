@@ -10,8 +10,8 @@ const request = require("request");
  *   - An error, if any (nullable)
  *   - The IP address as a string (null if error). Example: "162.245.144.188"
  */
-const fetchMyIP = function(callback) { 
-  request("https://api.ipify.org?format=json", function (error, response, body) {
+const fetchMyIP = function(callback) {
+  request("https://api.ipify.org?format=json", function(error, response, body) {
     
     if (error) {
       console.log('Bad request');
@@ -28,37 +28,13 @@ const fetchMyIP = function(callback) {
       const msg = `Status code ${response.statusCode} when fetching IP Response: ${body}`;
       callback(Error(msg), null);
       return;
+    } else {
+      const ip = JSON.parse(body).ip; //grab ip
+      callback(null, ip); 
+      return;
     }
-
-    // else {
-    //   callback(null, data[0].description)
-    // }
   });
 };
 
 module.exports = { fetchMyIP };
 
-
-
-const fetchBreedDescription = function(breed, callback) {
-
-  request("https://api.thecatapi.com/v1/breeds/search/?q=" + breed, function(error, response, body) {
-
-    if (error) {
-      console.log('bad request');
-      callback(error, null);
-    }
-
-    let data = JSON.parse(body);
-    if (data.length < 1) {
-      callback(null, "Breed not found :(");
-      
-    } 
-    
-    else {
-      callback(null, data[0].description);
-    }
-
-  });
-
-};
