@@ -54,7 +54,7 @@ const printPassTimes = function(passTimes) {
   }
 };
 
-//print pass time with error check 
+//print pass time with error check
 
 nextISSTimesForMyLocation((error, passTimes) => {
   if (error) {
